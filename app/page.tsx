@@ -32,11 +32,22 @@ export default function Home() {
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.36em] text-ember">Japan, after the shift ends</p>
             <h1 className="font-serif text-5xl leading-[0.9] text-bone sm:text-7xl lg:text-8xl">after work in japan</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-ash sm:text-lg">
-              I worked in a fitness club for nine years. I was a top instructor and loved the work.
-              Then I became an engineer because I did not want one company to decide the size of my life.
+              I wasn't looking for a different life.
+              <br />
+              I just wanted more than one option.
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-ash sm:text-lg">
+              A record of a Japanese office worker trying to build that life.
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-ash sm:text-lg">
+              For himself.
+              <br />
+              For his wife.
+              <br />
+              For his two children.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <LinkPill href="/read">Read entries</LinkPill>
+              <LinkPill href="/read">Read the Notes</LinkPill>
               <LinkPill href="/quiet-room">Enter Quiet Room</LinkPill>
             </div>
           </div>
