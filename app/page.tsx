@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CalendarDays, MapPin, Waves, type LucideIcon } from "lucide-react";
 import { EntryList, LinkPill, RitualGrid } from "@/components/content";
 import { SiteShell } from "@/components/site-shell";
@@ -12,10 +13,18 @@ export default function Home() {
   return (
     <SiteShell>
       <section className="relative min-h-[calc(100svh-66px)] overflow-hidden bg-ink">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(216,138,61,0.16),transparent_18rem),radial-gradient(circle_at_78%_12%,rgba(145,167,180,0.10),transparent_24rem),linear-gradient(145deg,#050506_0%,#0a0b0d_42%,#111014_68%,#050506_100%)]" />
-        <div className="absolute inset-0 opacity-[0.11] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:64px_64px]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
-        <div className="absolute -right-24 bottom-10 h-72 w-72 rounded-full border border-white/10 bg-white/[0.025] blur-sm sm:h-96 sm:w-96" />
+        <Image
+          src="/images/tokyo-after-work.png"
+          alt="A quiet Japanese convenience store exterior at night on a rainy residential street"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/78 to-ink/28" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/42 via-ink/30 to-ink" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(216,138,61,0.14),transparent_20rem),radial-gradient(circle_at_78%_14%,rgba(145,167,180,0.10),transparent_24rem)]" />
+        <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:64px_64px]" />
         <div className="absolute left-4 top-20 h-px w-28 bg-ember/40 sm:left-8 sm:w-44" />
         <div className="relative mx-auto flex min-h-[calc(100svh-66px)] max-w-6xl flex-col justify-end px-4 pb-10 pt-24 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
