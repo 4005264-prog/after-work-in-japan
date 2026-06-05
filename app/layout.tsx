@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "after work in japan",
-  description: "A Japanese office worker's record of work, family, and the hours after."
+  description: "A personal archive about work, family, engineering, and keeping options open."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

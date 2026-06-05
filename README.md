@@ -2,7 +2,7 @@
 
 A complete dark-theme Next.js and Tailwind CSS website for a personal record:
 
-> A Japanese office worker's notes from work, family, and the hours after.
+> A personal archive about leaving one-option work, becoming an engineer, and protecting family by keeping more choices open.
 
 ## Pages
 
