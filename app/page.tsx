@@ -19,11 +19,12 @@ export default function Home() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-center opacity-55 saturate-[0.72] contrast-[0.82] brightness-[0.68]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/78 to-ink/28" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/42 via-ink/30 to-ink" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(216,138,61,0.14),transparent_20rem),radial-gradient(circle_at_78%_14%,rgba(145,167,180,0.10),transparent_24rem)]" />
+        <div className="absolute inset-0 bg-ink/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/88 to-ink/62" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/62 via-ink/48 to-ink" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(216,138,61,0.18),transparent_18rem),radial-gradient(circle_at_76%_16%,rgba(5,5,6,0.34),transparent_26rem)]" />
         <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:64px_64px]" />
         <div className="absolute left-4 top-20 h-px w-28 bg-ember/40 sm:left-8 sm:w-44" />
         <div className="relative mx-auto flex min-h-[calc(100svh-66px)] max-w-6xl flex-col justify-end px-4 pb-10 pt-24 sm:px-6 lg:px-8">
