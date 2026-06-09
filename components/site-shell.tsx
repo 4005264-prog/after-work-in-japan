@@ -23,7 +23,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               <span className="block text-[10px] uppercase tracking-[0.32em] text-ash/60">in japan</span>
             </span>
           </Link>
-          <nav aria-label="Primary navigation" className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-white/[0.04] p-1">
+          <nav aria-label="Primary navigation" className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-white/[0.04] p-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {nav.map((item) => {
               const Icon = item.icon;
               return (

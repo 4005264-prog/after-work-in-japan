@@ -149,11 +149,26 @@ function CopyButton({ text, label }: { text: string; label: string }) {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 text-sm font-semibold text-bone transition hover:border-ember/50 hover:bg-ember/10"
+      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.055] px-4 text-sm font-semibold text-bone transition hover:border-ember/50 hover:bg-ember/10 sm:w-auto sm:min-w-44"
     >
-      {copied ? <Check size={16} strokeWidth={1.8} /> : <Clipboard size={16} strokeWidth={1.8} />}
+      {copied ? <Check size={17} strokeWidth={1.8} /> : <Clipboard size={17} strokeWidth={1.8} />}
       {copied ? "コピーしました" : label}
     </button>
+  );
+}
+
+function ProgressDots({ total, current }: { total: number; current: number }) {
+  return (
+    <div className="grid grid-cols-[repeat(20,minmax(0,1fr))] gap-1" aria-hidden="true">
+      {Array.from({ length: total }, (_, index) => (
+        <span
+          key={index}
+          className={`h-1 rounded-full transition ${
+            index <= current ? "bg-ember" : "bg-white/12"
+          }`}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -162,7 +177,8 @@ export function LifeResignationLetterClient() {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Array<number | null>>(initialAnswers);
 
-  const progress = Math.round((answers.filter((answer) => answer !== null).length / questions.length) * 100);
+  const answeredCount = answers.filter((answer) => answer !== null).length;
+  const progress = Math.round((answeredCount / questions.length) * 100);
   const currentQuestion = questions[current];
   const resultCategory = useMemo(() => getResultCategory(answers), [answers]);
   const result = resultContent[resultCategory];
@@ -181,6 +197,15 @@ export function LifeResignationLetterClient() {
     setCurrent((value) => value + 1);
   }
 
+  function goBack() {
+    if (current === 0) {
+      setStep("intro");
+      return;
+    }
+
+    setCurrent((value) => value - 1);
+  }
+
   function reset() {
     setAnswers(initialAnswers);
     setCurrent(0);
@@ -191,53 +216,81 @@ export function LifeResignationLetterClient() {
   return (
     <SiteShell>
       <section className="relative min-h-[calc(100svh-66px)] overflow-hidden border-b border-white/10 bg-ink">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_14%,rgba(216,138,61,0.18),transparent_20rem),radial-gradient(circle_at_76%_8%,rgba(143,46,53,0.14),transparent_22rem),linear-gradient(180deg,rgba(5,5,6,0)_0%,#050506_96%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_8%,rgba(216,138,61,0.18),transparent_19rem),radial-gradient(circle_at_88%_24%,rgba(145,167,180,0.1),transparent_18rem),linear-gradient(180deg,rgba(5,5,6,0)_0%,#050506_92%)]" />
         <div className="absolute inset-x-0 top-20 h-px bg-gradient-to-r from-transparent via-ember/35 to-transparent" />
-        <div className="relative mx-auto flex min-h-[calc(100svh-66px)] max-w-3xl flex-col justify-end px-4 pb-10 pt-20 sm:px-6 sm:pb-14">
-          {step === "intro" && (
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-ember">{serviceName}</p>
-              <h1 className="mt-6 font-serif text-4xl leading-[1.05] text-bone sm:text-6xl">
-                会社は辞めなくていい。
-                <span className="mt-7 block">
-                  でも、
-                  <br />
-                  その生き方は
-                  <br />
-                  もう辞めてもいい。
-                </span>
-              </h1>
-              <p className="mt-7 whitespace-pre-line text-sm leading-7 text-ash sm:text-base">
-                {
-                  "会社に出す退職届ではありません。\n他人の評価、我慢、狭い世界、会社依存、自分を後回しにする生き方から、\n静かに距離を取るための小さな儀式です。"
-                }
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+
+        {step === "intro" && (
+          <div className="relative mx-auto flex min-h-[calc(100svh-66px)] max-w-[34rem] flex-col justify-end px-4 pb-8 pt-16 sm:px-6 sm:pb-14">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-ember">{serviceName}</p>
+            <h1 className="mt-6 font-serif text-[3.2rem] leading-[0.92] text-bone sm:text-7xl">
+              会社は
+              <br />
+              辞めなくていい。
+              <span className="mt-8 block text-[2.55rem] leading-[1.05] text-bone/92 sm:text-6xl">
+                でも、
+                <br />
+                その生き方は
+                <br />
+                もう辞めてもいい。
+              </span>
+            </h1>
+            <p className="mt-7 whitespace-pre-line text-[15px] leading-8 text-ash">
+              {
+                "会社に出す退職届ではありません。\n他人の評価、我慢、狭い世界、会社依存、自分を後回しにする生き方から、静かに距離を取るための小さな儀式です。"
+              }
+            </p>
+            <div className="mt-8 grid grid-cols-3 border-y border-white/10 py-4">
+              {["20問", "約2分", "記録なし"].map((item) => (
+                <div key={item} className="border-r border-white/10 text-center last:border-r-0">
+                  <p className="text-xs font-semibold tracking-[0.18em] text-bone">{item}</p>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setStep("quiz")}
+              className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-bone px-6 text-[15px] font-semibold text-ink transition hover:bg-ember"
+            >
+              <FilePenLine size={18} strokeWidth={1.8} />
+              退職届を作る
+            </button>
+          </div>
+        )}
+
+        {step === "quiz" && (
+          <div className="relative mx-auto grid min-h-[calc(100svh-66px)] max-w-[34rem] grid-rows-[auto_1fr_auto] px-4 pb-4 pt-5 sm:px-6 sm:py-8">
+            <header className="space-y-4">
+              <div className="flex items-center justify-between gap-4">
                 <button
                   type="button"
-                  onClick={() => setStep("quiz")}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
+                  onClick={goBack}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-lg px-1 text-sm text-ash transition hover:text-bone"
+                  aria-label="前の画面へ戻る"
                 >
-                  <FilePenLine size={17} strokeWidth={1.8} />
-                  退職届を作る
+                  <ArrowLeft size={18} strokeWidth={1.8} />
+                  戻る
                 </button>
+                <div className="text-right">
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-ember">
+                    Question {String(current + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-1 text-xs text-ash/60">{progress}% complete</p>
+                </div>
+              </div>
+              <ProgressDots total={questions.length} current={current} />
+            </header>
+
+            <div className="flex items-center py-8">
+              <div>
+                <p className="text-xs uppercase tracking-[0.28em] text-ash/45">old pattern check</p>
+                <h2 className="mt-5 text-[1.72rem] font-semibold leading-[1.34] text-bone sm:text-4xl">
+                  {currentQuestion.text}
+                </h2>
               </div>
             </div>
-          )}
 
-          {step === "quiz" && (
-            <div className="rounded-lg border border-white/10 bg-coal/80 p-5 shadow-glow sm:p-7">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">
-                  {String(current + 1).padStart(2, "0")} / {questions.length}
-                </p>
-                <p className="text-xs text-ash/60">{progress}%</p>
-              </div>
-              <div className="mt-4 h-px overflow-hidden rounded-full bg-white/10">
-                <div className="h-full bg-ember transition-all" style={{ width: `${progress}%` }} />
-              </div>
-              <h2 className="mt-8 text-xl font-semibold leading-8 text-bone sm:text-2xl">{currentQuestion.text}</h2>
-              <div className="mt-8 grid gap-3">
+            <div className="rounded-lg border border-white/10 bg-coal/[0.82] p-2 shadow-glow backdrop-blur">
+              <div className="grid gap-2">
                 {scaleLabels.map((label, index) => {
                   const score = index + 1;
                   const selected = answers[current] === score;
@@ -247,82 +300,89 @@ export function LifeResignationLetterClient() {
                       type="button"
                       key={label}
                       onClick={() => chooseAnswer(score)}
-                      className={`grid min-h-14 grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border p-3 text-left transition ${
+                      aria-pressed={selected}
+                      className={`grid min-h-[3.6rem] grid-cols-[2.4rem_1fr] items-center gap-3 rounded-lg border px-3 py-2 text-left transition ${
                         selected
-                          ? "border-ember/60 bg-ember/15 text-bone"
-                          : "border-white/10 bg-white/[0.035] text-ash hover:border-ember/40 hover:bg-white/[0.06]"
+                          ? "border-ember/70 bg-ember/15 text-bone"
+                          : "border-white/10 bg-white/[0.035] text-ash hover:border-ember/45 hover:bg-white/[0.07]"
                       }`}
                     >
-                      <span className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-sm font-semibold text-ember">
+                      <span
+                        className={`grid h-9 w-9 place-items-center rounded-full border text-sm font-semibold ${
+                          selected ? "border-ember/70 bg-ember text-ink" : "border-white/10 text-ember"
+                        }`}
+                      >
                         {score}
                       </span>
-                      <span className="text-sm leading-6">{label}</span>
+                      <span className="text-[15px] leading-6">{label}</span>
                     </button>
                   );
                 })}
               </div>
-              <div className="mt-6 flex items-center justify-between">
+            </div>
+          </div>
+        )}
+
+        {step === "result" && (
+          <div className="relative mx-auto max-w-[42rem] px-4 py-8 sm:px-6 sm:py-14">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-ember">診断結果</p>
+              <h1 className="mt-4 font-serif text-[3rem] leading-[0.98] text-bone sm:text-7xl">{result.title}</h1>
+              <p className="mt-6 whitespace-pre-line text-base leading-8 text-ash">{result.subtitle}</p>
+            </div>
+
+            <div className="mt-8 border-y border-white/10 py-5">
+              <p className="text-[15px] leading-8 text-ash">{result.description}</p>
+            </div>
+
+            <section className="mt-8 rounded-lg border border-ember/30 bg-[linear-gradient(180deg,rgba(216,138,61,0.11),rgba(255,255,255,0.035))] p-5 shadow-glow sm:p-7">
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-xs uppercase tracking-[0.28em] text-ember">退職届</p>
+                <FilePenLine size={18} className="text-ember" strokeWidth={1.8} />
+              </div>
+              <p className="mt-6 whitespace-pre-line font-serif text-[1.65rem] leading-[1.65] text-bone sm:text-4xl">
+                {result.letter}
+              </p>
+            </section>
+
+            <section className="mt-5 rounded-lg border border-white/10 bg-white/[0.035] p-5">
+              <p className="text-xs uppercase tracking-[0.28em] text-ember">最初の小さな行動</p>
+              <p className="mt-4 text-[15px] leading-8 text-ash">{result.firstAction}</p>
+            </section>
+
+            <div className="mt-5 grid gap-3 sm:flex">
+              <CopyButton text={result.letter} label="退職届をコピー" />
+              <CopyButton text={shareText} label="シェア文をコピー" />
+            </div>
+
+            <section className="mt-10 border-t border-white/10 pt-8">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-ember">One More Option Map</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight text-bone">退職届を作ったあなたへ。</h2>
+              <p className="mt-5 whitespace-pre-line text-[15px] leading-8 text-ash">
+                {
+                  "退職届は、区切りです。\nでも、本当に必要なのは、その後に何を増やすかです。\n\nOne More Option Mapでは、あなたの仕事・収入・家族・スキル・不安を整理し、次に増やすべき選択肢を1枚のPDFにして返します。"
+                }
+              </p>
+              <div className="mt-7 grid gap-3 sm:flex">
+                <Link
+                  href="/map"
+                  className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-bone px-5 text-center text-[15px] font-semibold text-ink transition hover:bg-ember sm:w-auto"
+                >
+                  自分専用の選択肢マップを作る
+                  <ArrowUpRight size={18} strokeWidth={1.8} />
+                </Link>
                 <button
                   type="button"
-                  onClick={() => (current === 0 ? setStep("intro") : setCurrent((value) => value - 1))}
-                  className="inline-flex h-10 items-center gap-2 rounded-full px-2 text-sm text-ash transition hover:text-bone"
+                  onClick={reset}
+                  className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-[15px] font-semibold text-bone transition hover:border-ember/40 hover:bg-white/[0.07] sm:w-auto"
                 >
-                  <ArrowLeft size={16} strokeWidth={1.8} />
-                  戻る
+                  <RotateCcw size={17} strokeWidth={1.8} />
+                  もう一度診断する
                 </button>
               </div>
-            </div>
-          )}
-
-          {step === "result" && (
-            <div className="grid gap-7">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-ember">診断結果</p>
-                <h1 className="mt-4 font-serif text-4xl leading-tight text-bone sm:text-6xl">{result.title}</h1>
-                <p className="mt-5 whitespace-pre-line text-base leading-7 text-ash">{result.subtitle}</p>
-              </div>
-              <p className="text-sm leading-7 text-ash sm:text-base">{result.description}</p>
-              <section className="rounded-lg border border-ember/25 bg-ember/[0.07] p-5 shadow-glow sm:p-7">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">退職届</p>
-                <p className="mt-5 whitespace-pre-line font-serif text-2xl leading-10 text-bone">{result.letter}</p>
-              </section>
-              <section className="rounded-lg border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">最初の小さな行動</p>
-                <p className="mt-4 text-sm leading-7 text-ash">{result.firstAction}</p>
-              </section>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <CopyButton text={result.letter} label="退職届をコピー" />
-                <CopyButton text={shareText} label="シェア文をコピー" />
-              </div>
-              <section className="border-t border-white/10 pt-7">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">One More Option Map</p>
-                <h2 className="mt-4 font-serif text-3xl leading-tight text-bone">退職届を作ったあなたへ。</h2>
-                <p className="mt-4 whitespace-pre-line text-sm leading-7 text-ash">
-                  {
-                    "退職届は、区切りです。\nでも、本当に必要なのは、その後に何を増やすかです。\n\nOne More Option Mapでは、あなたの仕事・収入・家族・スキル・不安を整理し、次に増やすべき選択肢を1枚のPDFにして返します。"
-                  }
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href="/map"
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
-                  >
-                    自分専用の選択肢マップを作る
-                    <ArrowUpRight size={17} strokeWidth={1.8} />
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={reset}
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-bone transition hover:border-ember/40 hover:bg-white/[0.07]"
-                  >
-                    <RotateCcw size={16} strokeWidth={1.8} />
-                    もう一度診断する
-                  </button>
-                </div>
-              </section>
-            </div>
-          )}
-        </div>
+            </section>
+          </div>
+        )}
       </section>
     </SiteShell>
   );
