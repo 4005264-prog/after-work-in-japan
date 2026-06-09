@@ -27,97 +27,37 @@ type ResultContent = {
   firstAction: string;
 };
 
-const serviceName = "莠ｺ逕溘・騾閨ｷ螻翫ず繧ｧ繝阪Ξ繝ｼ繧ｿ繝ｼ";
+const serviceName = "人生の退職届ジェネレーター";
 
 const scaleLabels = [
-  "縺ｾ縺｣縺溘￥蠖薙※縺ｯ縺ｾ繧峨↑縺・",
-  "縺ゅ∪繧雁ｽ薙※縺ｯ縺ｾ繧峨↑縺・",
-  "縺ｩ縺｡繧峨→繧りｨ縺医↑縺・",
-  "蟆代＠蠖薙※縺ｯ縺ｾ繧・",
-  "縺ｨ縺ｦ繧ょｽ薙※縺ｯ縺ｾ繧・"
+  "まったく当てはまらない",
+  "あまり当てはまらない",
+  "どちらとも言えない",
+  "少し当てはまる",
+  "とても当てはまる"
 ];
 
 const questions: Question[] = [
-  {
-    category: "evaluationDependency",
-    text: "莠ｺ縺九ｉ隧穂ｾ｡縺輔ｌ縺ｦ縺・↑縺・→縲∬・蛻・↓萓｡蛟､縺後↑縺・ｈ縺・↓諢溘§繧・"
-  },
-  {
-    category: "evaluationDependency",
-    text: "鬆ｼ縺ｾ繧後ｋ縺ｨ縲∵悽蠖薙・雖後〒繧よ妙繧後↑縺・％縺ｨ縺悟､壹＞"
-  },
-  {
-    category: "evaluationDependency",
-    text: "譛溷ｾ・↓蠢懊∴繧九％縺ｨ繧偵∬・蛻・・莠ｺ逕溘ｈ繧雁━蜈医＠縺ｦ縺励∪縺・"
-  },
-  {
-    category: "evaluationDependency",
-    text: "縲後＞縺・ｺｺ縲阪後■繧・ｓ縺ｨ縺励※縺・ｋ莠ｺ縲阪〒縺・ｈ縺・→縺励※逍ｲ繧後ｋ"
-  },
-  {
-    category: "companyDependency",
-    text: "莉翫・莨夂､ｾ繧貞､ｱ縺｣縺溘ｉ縲∬・蛻・・萓｡蛟､繧ゆｸ九′繧区ｰ励′縺吶ｋ"
-  },
-  {
-    category: "companyDependency",
-    text: "閧ｩ譖ｸ縺阪ｄ謇螻槫・縺後↑縺・・蛻・ｒ諠ｳ蜒上☆繧九→荳榊ｮ峨↓縺ｪ繧・"
-  },
-  {
-    category: "companyDependency",
-    text: "莨夂､ｾ縺ｮ隧穂ｾ｡縺後∬・蛻・・莠ｺ逕溘・隧穂ｾ｡縺ｮ繧医≧縺ｫ諢溘§繧・"
-  },
-  {
-    category: "companyDependency",
-    text: "莉翫・莨夂､ｾ莉･螟悶〒蜒阪￥閾ｪ蛻・ｒ縺ゅ∪繧頑Φ蜒上〒縺阪↑縺・"
-  },
-  {
-    category: "patienceDependency",
-    text: "縺､繧峨￥縺ｦ繧よ・諷｢縺ｧ縺阪ｋ縺薙→繧偵∝ｼｷ縺輔□縺ｨ諤昴▲縺ｦ縺阪◆"
-  },
-  {
-    category: "patienceDependency",
-    text: "閾ｪ蛻・′辟｡逅・ｒ縺吶ｌ縺ｰ荳ｸ縺丞庶縺ｾ繧句ｴ髱｢縺悟､壹＞"
-  },
-  {
-    category: "patienceDependency",
-    text: "莨代・縺薙→繧・焔繧呈栢縺上％縺ｨ縺ｫ鄂ｪ謔ｪ諢溘′縺ゅｋ"
-  },
-  {
-    category: "patienceDependency",
-    text: "閾ｪ蛻・・譛ｬ髻ｳ繧医ｊ縲∬ｲｬ莉ｻ繧貞━蜈医☆繧九％縺ｨ縺悟､壹＞"
-  },
-  {
-    category: "narrowWorldDependency",
-    text: "莉翫＞繧倶ｼ夂､ｾ繧・･ｭ逡後・螟悶・荳也阜繧偵≠縺ｾ繧顔衍繧峨↑縺・"
-  },
-  {
-    category: "narrowWorldDependency",
-    text: "螟悶・荳也阜繧定ｪｿ縺ｹ繧句燕縺ｫ縲瑚・蛻・↓縺ｯ辟｡逅・阪→諤昴▲縺ｦ縺励∪縺・"
-  },
-  {
-    category: "narrowWorldDependency",
-    text: "譁ｰ縺励＞謖第姶繧医ｊ縲∽ｻ翫・迺ｰ蠅・〒謌第・縺吶ｋ譁ｹ縺梧･ｽ縺縺ｨ諢溘§繧・"
-  },
-  {
-    category: "narrowWorldDependency",
-    text: "縺薙・縺ｾ縺ｾ謨ｰ蟷ｴ邨後▽閾ｪ蛻・ｒ諠ｳ蜒上☆繧九→縲∝ｰ代＠諤悶＞"
-  },
-  {
-    category: "selfPostponement",
-    text: "閾ｪ蛻・′菴輔ｒ縺励◆縺・°繧医ｊ縲∝捉繧翫↓霑ｷ諠代ｒ縺九￠縺ｪ縺・％縺ｨ繧貞━蜈医☆繧・"
-  },
-  {
-    category: "selfPostponement",
-    text: "螳ｶ譌上ｄ莉穂ｺ九・縺薙→繧定・∴繧九→縲∬・蛻・・莠ｺ逕溘・蠕悟屓縺励↓縺ｪ繧・"
-  },
-  {
-    category: "selfPostponement",
-    text: "譛ｬ蠖薙・螟峨∴縺溘＞縺薙→縺後≠繧九・縺ｫ縲∝ｿ吶＠縺輔〒隕九↑縺・ｈ縺・↓縺励※縺・ｋ"
-  },
-  {
-    category: "selfPostponement",
-    text: "閾ｪ蛻・・莠ｺ逕溘↓縺､縺・※閠・∴繧九・縺ｯ縲√＞縺､繧ゆｻ穂ｺ九′邨ゅｏ縺｣縺溷ｾ後□"
-  }
+  { category: "evaluationDependency", text: "人から評価されていないと、自分に価値がないように感じる" },
+  { category: "evaluationDependency", text: "頼まれると、本当は嫌でも断れないことが多い" },
+  { category: "evaluationDependency", text: "期待に応えることを、自分の人生より優先してしまう" },
+  { category: "evaluationDependency", text: "「いい人」「ちゃんとしている人」でいようとして疲れる" },
+  { category: "companyDependency", text: "今の会社を失ったら、自分の価値も下がる気がする" },
+  { category: "companyDependency", text: "肩書きや所属先がない自分を想像すると不安になる" },
+  { category: "companyDependency", text: "会社の評価が、自分の人生の評価のように感じる" },
+  { category: "companyDependency", text: "今の会社以外で働く自分をあまり想像できない" },
+  { category: "patienceDependency", text: "つらくても我慢できることを、強さだと思ってきた" },
+  { category: "patienceDependency", text: "自分が無理をすれば丸く収まる場面が多い" },
+  { category: "patienceDependency", text: "休むことや手を抜くことに罪悪感がある" },
+  { category: "patienceDependency", text: "自分の本音より、責任を優先することが多い" },
+  { category: "narrowWorldDependency", text: "今いる会社や業界の外の世界をあまり知らない" },
+  { category: "narrowWorldDependency", text: "外の世界を調べる前に「自分には無理」と思ってしまう" },
+  { category: "narrowWorldDependency", text: "新しい挑戦より、今の環境で我慢する方が楽だと感じる" },
+  { category: "narrowWorldDependency", text: "このまま数年経つ自分を想像すると、少し怖い" },
+  { category: "selfPostponement", text: "自分が何をしたいかより、周りに迷惑をかけないことを優先する" },
+  { category: "selfPostponement", text: "家族や仕事のことを考えると、自分の人生は後回しになる" },
+  { category: "selfPostponement", text: "本当は変えたいことがあるのに、忙しさで見ないようにしている" },
+  { category: "selfPostponement", text: "自分の人生について考えるのは、いつも仕事が終わった後だ" }
 ];
 
 const resultPriority: Category[] = [
@@ -130,59 +70,54 @@ const resultPriority: Category[] = [
 
 const resultContent: Record<Category, ResultContent> = {
   evaluationDependency: {
-    title: "隧穂ｾ｡萓晏ｭ倥ち繧､繝・",
-    subtitle: "騾閨ｷ縺吶∋縺咲函縺肴婿・・\n莉紋ｺｺ縺ｮ隧穂ｾ｡縺縺代〒縲∬・蛻・・萓｡蛟､繧呈ｱｺ繧√ｋ逕溘″譁ｹ",
+    title: "評価依存タイプ",
+    subtitle: "退職すべき生き方：\n他人の評価だけで、自分の価値を決める生き方",
     description:
-      "縺ゅ↑縺溘・縲∽ｺｺ縺九ｉ蠢・ｦ√→縺輔ｌ繧九％縺ｨ縺ｫ螳牙ｿ・ｒ諢溘§繧・☆縺・ち繧､繝励〒縺吶りｩ穂ｾ｡縺輔ｌ繧九％縺ｨ閾ｪ菴薙・謔ｪ縺上≠繧翫∪縺帙ｓ縲ゅ◆縺縲√◎縺ｮ隧穂ｾ｡縺後↑縺・→閾ｪ蛻・・萓｡蛟､縺ｾ縺ｧ謠ｺ繧峨＞縺ｧ縺励∪縺・↑繧峨∝ｰ代＠蜊ｱ髯ｺ縺ｧ縺吶・",
+      "あなたは、人から必要とされることに安心を感じやすいタイプです。評価されること自体は悪くありません。ただ、その評価がないと自分の価値まで揺らいでしまうなら、少し危険です。",
     letter:
-      "遘√・譛ｬ譌･繧偵ｂ縺｣縺ｦ縲・\n縲御ｻ紋ｺｺ縺ｮ隧穂ｾ｡縺縺代〒閾ｪ蛻・・萓｡蛟､繧呈ｱｺ繧√ｋ逕溘″譁ｹ縲・\n繧帝閨ｷ縺励∪縺吶・\n\n縺薙ｌ縺九ｉ縺ｯ縲・\n隱ｰ縺九↓隱阪ａ繧峨ｌ繧句燕縺ｫ縲・\n閾ｪ蛻・′菴輔ｒ驕ｸ縺ｳ縺溘＞縺ｮ縺九ｒ遒ｺ隱阪＠縺ｾ縺吶・",
-    firstAction:
-      "莉頑律縲∬・蛻・′譛ｬ蠖薙・譁ｭ繧翫◆縺九▲縺溘％縺ｨ繧・縺､縺縺第嶌縺榊・縺励※縺上□縺輔＞縲・"
+      "私は本日をもって、\n「他人の評価だけで自分の価値を決める生き方」\nを退職します。\n\nこれからは、\n誰かに認められる前に、\n自分が何を選びたいのかを確認します。",
+    firstAction: "今日、自分が本当は断りたかったことを1つだけ書き出してください。"
   },
   companyDependency: {
-    title: "莨夂､ｾ萓晏ｭ倥ち繧､繝・",
-    subtitle: "騾閨ｷ縺吶∋縺咲函縺肴婿・・\n荳縺､縺ｮ莨夂､ｾ縲∽ｸ縺､縺ｮ閧ｩ譖ｸ縺阪↓螳牙ｿ・ｒ鬆舌￠繧狗函縺肴婿",
+    title: "会社依存タイプ",
+    subtitle: "退職すべき生き方：\n一つの会社、一つの肩書きに安心を預ける生き方",
     description:
-      "縺ゅ↑縺溘・縲∽ｼ夂､ｾ繧・か譖ｸ縺阪↓繧医▲縺ｦ螳牙ｿ・ｒ蠕励※縺・ｋ驛ｨ蛻・′螟ｧ縺阪＞繧ｿ繧､繝励〒縺吶ょｮ牙ｮ壹ｒ豎ゅａ繧九％縺ｨ縺ｯ閾ｪ辟ｶ縺ｧ縺吶ゅ◆縺縲√◎縺ｮ螳牙ｮ壹′縲碁∈謚櫁い縺ｮ蟆代↑縺輔阪↓繧医▲縺ｦ謌舌ｊ遶九▲縺ｦ縺・ｋ縺ｪ繧峨∬ｦ狗峩縺吝ｿ・ｦ√′縺ゅｊ縺ｾ縺吶・",
+      "あなたは、会社や肩書きによって安心を得ている部分が大きいタイプです。安定を求めることは自然です。ただ、その安定が「選択肢の少なさ」によって成り立っているなら、見直す必要があります。",
     letter:
-      "遘√・譛ｬ譌･繧偵ｂ縺｣縺ｦ縲・\n縲御ｸ縺､縺ｮ莨夂､ｾ縺縺代↓螳牙ｿ・ｒ鬆舌￠繧狗函縺肴婿縲・\n繧帝閨ｷ縺励∪縺吶・\n\n縺薙ｌ縺九ｉ縺ｯ縲・\n莉翫＞繧句ｴ謇繧貞､ｧ蛻・↓縺励↑縺後ｉ縲・\n螟悶・荳也阜繧りｦ九↓陦後″縺ｾ縺吶・",
-    firstAction:
-      "霆｢閨ｷ縺吶ｋ縺九←縺・°縺ｯ豎ｺ繧√★縺ｫ縲∽ｻ企ｱ荳ｭ縺ｫ莉翫・讌ｭ逡御ｻ･螟悶・豎ゆｺｺ繧・莉ｶ縺縺題ｦ九※縺上□縺輔＞縲・"
+      "私は本日をもって、\n「一つの会社だけに安心を預ける生き方」\nを退職します。\n\nこれからは、\n今いる場所を大切にしながら、\n外の世界も見に行きます。",
+    firstAction: "転職するかどうかは決めずに、今週中に今の業界以外の求人を5件だけ見てください。"
   },
   patienceDependency: {
-    title: "謌第・萓晏ｭ倥ち繧､繝・",
-    subtitle: "騾閨ｷ縺吶∋縺咲函縺肴婿・・\n謌第・縺ｧ縺阪ｋ縺薙→繧偵∝ｼｷ縺輔□縺ｨ諤昴＞霎ｼ繧逕溘″譁ｹ",
+    title: "我慢依存タイプ",
+    subtitle: "退職すべき生き方：\n我慢できることを、強さだと思い込む生き方",
     description:
-      "縺ゅ↑縺溘・雋ｬ莉ｻ諢溘′蠑ｷ縺上√▽繧峨＞迥ｶ豕√〒繧りｸ上ｓ蠑ｵ繧後ｋ繧ｿ繧､繝励〒縺吶ゅ◆縺縲∵・諷｢縺檎ｿ呈・縺ｫ縺ｪ繧九→縲∬・蛻・′菴輔↓蛯ｷ縺､縺・※縺・ｋ縺ｮ縺句・縺九ｉ縺ｪ縺上↑繧翫∪縺吶・",
+      "あなたは責任感が強く、つらい状況でも踏ん張れるタイプです。ただ、我慢が習慣になると、自分が何に傷ついているのか分からなくなります。",
     letter:
-      "遘√・譛ｬ譌･繧偵ｂ縺｣縺ｦ縲・\n縲梧・諷｢縺ｧ縺阪ｋ縺薙→繧貞ｼｷ縺輔□縺ｨ諤昴＞霎ｼ繧逕溘″譁ｹ縲・\n繧帝閨ｷ縺励∪縺吶・\n\n縺薙ｌ縺九ｉ縺ｯ縲・\n閠舌∴繧句燕縺ｫ縲・\n譛ｬ蠖薙↓閠舌∴繧句ｿ・ｦ√′縺ゅｋ縺ｮ縺九ｒ閠・∴縺ｾ縺吶・",
-    firstAction:
-      "譛霑第・諷｢縺励◆縺薙→繧・縺､譖ｸ縺阪√◎縺ｮ謌第・縺梧悽蠖薙↓蠢・ｦ√□縺｣縺溘°繧定・∴縺ｦ縺上□縺輔＞縲・"
+      "私は本日をもって、\n「我慢できることを強さだと思い込む生き方」\nを退職します。\n\nこれからは、\n耐える前に、\n本当に耐える必要があるのかを考えます。",
+    firstAction: "最近我慢したことを1つ書き、その我慢が本当に必要だったかを考えてください。"
   },
   narrowWorldDependency: {
-    title: "迢ｭ縺・ｸ也阜繧ｿ繧､繝・",
-    subtitle: "騾閨ｷ縺吶∋縺咲函縺肴婿・・\n隕九◆縺薙→縺ｮ縺ｪ縺・ｸ也阜繧偵∬ｦ九↑縺・∪縺ｾ隲ｦ繧√ｋ逕溘″譁ｹ",
+    title: "狭い世界タイプ",
+    subtitle: "退職すべき生き方：\n見たことのない世界を、見ないまま諦める生き方",
     description:
-      "縺ゅ↑縺溘・縲∽ｻ翫＞繧倶ｼ夂､ｾ繧・･ｭ逡後・荳ｭ縺ｧ譛ｪ譚･繧定・∴繧区凾髢薙′髟ｷ縺上↑縺｣縺ｦ縺・ｋ蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺吶ゆｻ翫☆縺仙､峨ｏ繧句ｿ・ｦ√・縺ゅｊ縺ｾ縺帙ｓ縲ゅ〒繧ゅ∝､悶ｒ隕九↑縺・∪縺ｾ縲瑚・蛻・↓縺ｯ辟｡逅・阪→豎ｺ繧√ｋ縺ｮ縺ｯ譌ｩ縺吶℃縺ｾ縺吶・",
+      "あなたは、今いる会社や業界の中で未来を考える時間が長くなっている可能性があります。今すぐ変わる必要はありません。でも、外を見ないまま「自分には無理」と決めるのは早すぎます。",
     letter:
-      "遘√・譛ｬ譌･繧偵ｂ縺｣縺ｦ縲・\n縲瑚ｦ九◆縺薙→縺ｮ縺ｪ縺・ｸ也阜繧偵∬ｦ九↑縺・∪縺ｾ隲ｦ繧√ｋ逕溘″譁ｹ縲・\n繧帝閨ｷ縺励∪縺吶・\n\n縺薙ｌ縺九ｉ縺ｯ縲・\n辟｡逅・□縺ｨ豎ｺ繧√ｋ蜑阪↓縲・\n閾ｪ蛻・・逶ｮ縺ｧ遒ｺ縺九ａ縺ｫ陦後″縺ｾ縺吶・",
-    firstAction:
-      "莉企ｱ縲∽ｻ翫＞繧区･ｭ逡後・螟門・縺ｫ縺ゅｋ諠・ｱ繧・0蛻・□縺題ｦ九※縺上□縺輔＞縲・"
+      "私は本日をもって、\n「見たことのない世界を、見ないまま諦める生き方」\nを退職します。\n\nこれからは、\n無理だと決める前に、\n自分の目で確かめに行きます。",
+    firstAction: "今週、今いる業界の外側にある情報を30分だけ見てください。"
   },
   selfPostponement: {
-    title: "閾ｪ蛻・ｾ悟屓縺励ち繧､繝・",
-    subtitle: "騾閨ｷ縺吶∋縺咲函縺肴婿・・\n閾ｪ蛻・・莠ｺ逕溘ｒ縲√＞縺､繧よ怙蠕後↓蝗槭☆逕溘″譁ｹ",
+    title: "自分後回しタイプ",
+    subtitle: "退職すべき生き方：\n自分の人生を、いつも最後に回す生き方",
     description:
-      "縺ゅ↑縺溘・縲∝ｮｶ譌上∽ｻ穂ｺ九∝捉蝗ｲ縺ｮ莠ｺ繧貞､ｧ蛻・↓縺ｧ縺阪ｋ繧ｿ繧､繝励〒縺吶ゅ◆縺縲∬・蛻・・莠ｺ逕溘ｒ蠕悟屓縺励↓縺礼ｶ壹￠繧九→縲√＞縺､縺倶ｽ輔ｒ驕ｸ縺ｳ縺溘°縺｣縺溘・縺句・縺九ｉ縺ｪ縺上↑繧翫∪縺吶・",
+      "あなたは、家族、仕事、周囲の人を大切にできるタイプです。ただ、自分の人生を後回しにし続けると、いつか何を選びたかったのか分からなくなります。",
     letter:
-      "遘√・譛ｬ譌･繧偵ｂ縺｣縺ｦ縲・\n縲瑚・蛻・・莠ｺ逕溘ｒ縲√＞縺､繧よ怙蠕後↓蝗槭☆逕溘″譁ｹ縲・\n繧帝閨ｷ縺励∪縺吶・\n\n縺薙ｌ縺九ｉ縺ｯ縲・\n隱ｰ縺九ｒ螟ｧ蛻・↓縺吶ｋ縺溘ａ縺ｫ繧ゅ・\n閾ｪ蛻・・驕ｸ謚櫁い繧呈ｮ九＠縺ｾ縺吶・",
-    firstAction:
-      "莉頑律縲∬・蛻・・縺溘ａ縺縺代↓菴ｿ縺・0蛻・ｒ莠亥ｮ壹↓蜈･繧後※縺上□縺輔＞縲・"
+      "私は本日をもって、\n「自分の人生を、いつも最後に回す生き方」\nを退職します。\n\nこれからは、\n誰かを大切にするためにも、\n自分の選択肢を残します。",
+    firstAction: "今日、自分のためだけに使う30分を予定に入れてください。"
   }
 };
 
 const shareText =
-  "莨夂､ｾ縺ｯ霎槭ａ縺ｪ縺・・\n縺ｧ繧ゅ√％縺ｮ逕溘″譁ｹ縺ｯ霎槭ａ繧九・\n\n遘√・莠ｺ逕溘・騾閨ｷ螻翫ｒ菴懊ｊ縺ｾ縺励◆縲・\n#莠ｺ逕溘・騾閨ｷ螻・\n#OneMoreOption";
+  "会社は辞めない。\nでも、この生き方は辞める。\n\n私の人生の退職届を作りました。\n#人生の退職届\n#OneMoreOption";
 
 const initialAnswers = Array<number | null>(questions.length).fill(null);
 
@@ -217,7 +152,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
       className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 text-sm font-semibold text-bone transition hover:border-ember/50 hover:bg-ember/10"
     >
       {copied ? <Check size={16} strokeWidth={1.8} /> : <Clipboard size={16} strokeWidth={1.8} />}
-      {copied ? "Copied" : label}
+      {copied ? "コピーしました" : label}
     </button>
   );
 }
@@ -263,18 +198,18 @@ export function LifeResignationLetterClient() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-ember">{serviceName}</p>
               <h1 className="mt-6 font-serif text-4xl leading-[1.05] text-bone sm:text-6xl">
-                莨夂､ｾ縺ｯ霎槭ａ縺ｪ縺上※縺・＞縲・
+                会社は辞めなくていい。
                 <span className="mt-7 block">
-                  縺ｧ繧ゅ・
+                  でも、
                   <br />
-                  縺昴・逕溘″譁ｹ縺ｯ
+                  その生き方は
                   <br />
-                  繧ゅ≧霎槭ａ縺ｦ繧ゅ＞縺・・
+                  もう辞めてもいい。
                 </span>
               </h1>
               <p className="mt-7 whitespace-pre-line text-sm leading-7 text-ash sm:text-base">
                 {
-                  "莨夂､ｾ縺ｫ蜃ｺ縺咎閨ｷ螻翫〒縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲・\n莉紋ｺｺ縺ｮ隧穂ｾ｡縲∵・諷｢縲∫強縺・ｸ也阜縲∽ｼ夂､ｾ萓晏ｭ倥∬・蛻・ｒ蠕悟屓縺励↓縺吶ｋ逕溘″譁ｹ縺九ｉ縲・\n髱吶°縺ｫ霍晞屬繧貞叙繧九◆繧√・蟆上＆縺ｪ蜆蠑上〒縺吶・"
+                  "会社に出す退職届ではありません。\n他人の評価、我慢、狭い世界、会社依存、自分を後回しにする生き方から、\n静かに距離を取るための小さな儀式です。"
                 }
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -284,7 +219,7 @@ export function LifeResignationLetterClient() {
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
                 >
                   <FilePenLine size={17} strokeWidth={1.8} />
-                  騾閨ｷ螻翫ｒ菴懊ｋ
+                  退職届を作る
                 </button>
               </div>
             </div>
@@ -333,7 +268,7 @@ export function LifeResignationLetterClient() {
                   className="inline-flex h-10 items-center gap-2 rounded-full px-2 text-sm text-ash transition hover:text-bone"
                 >
                   <ArrowLeft size={16} strokeWidth={1.8} />
-                  Back
+                  戻る
                 </button>
               </div>
             </div>
@@ -342,29 +277,29 @@ export function LifeResignationLetterClient() {
           {step === "result" && (
             <div className="grid gap-7">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-ember">Result</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-ember">診断結果</p>
                 <h1 className="mt-4 font-serif text-4xl leading-tight text-bone sm:text-6xl">{result.title}</h1>
                 <p className="mt-5 whitespace-pre-line text-base leading-7 text-ash">{result.subtitle}</p>
               </div>
               <p className="text-sm leading-7 text-ash sm:text-base">{result.description}</p>
               <section className="rounded-lg border border-ember/25 bg-ember/[0.07] p-5 shadow-glow sm:p-7">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">Letter</p>
+                <p className="text-xs uppercase tracking-[0.28em] text-ember">退職届</p>
                 <p className="mt-5 whitespace-pre-line font-serif text-2xl leading-10 text-bone">{result.letter}</p>
               </section>
               <section className="rounded-lg border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                <p className="text-xs uppercase tracking-[0.28em] text-ember">First small action</p>
+                <p className="text-xs uppercase tracking-[0.28em] text-ember">最初の小さな行動</p>
                 <p className="mt-4 text-sm leading-7 text-ash">{result.firstAction}</p>
               </section>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <CopyButton text={result.letter} label="Copy letter" />
-                <CopyButton text={shareText} label="Copy share text" />
+                <CopyButton text={result.letter} label="退職届をコピー" />
+                <CopyButton text={shareText} label="シェア文をコピー" />
               </div>
               <section className="border-t border-white/10 pt-7">
                 <p className="text-xs uppercase tracking-[0.28em] text-ember">One More Option Map</p>
-                <h2 className="mt-4 font-serif text-3xl leading-tight text-bone">騾閨ｷ螻翫ｒ菴懊▲縺溘≠縺ｪ縺溘∈縲・</h2>
+                <h2 className="mt-4 font-serif text-3xl leading-tight text-bone">退職届を作ったあなたへ。</h2>
                 <p className="mt-4 whitespace-pre-line text-sm leading-7 text-ash">
                   {
-                    "騾閨ｷ螻翫・縲∝玄蛻・ｊ縺ｧ縺吶・\n縺ｧ繧ゅ∵悽蠖薙↓蠢・ｦ√↑縺ｮ縺ｯ縲√◎縺ｮ蠕後↓菴輔ｒ蠅励ｄ縺吶°縺ｧ縺吶・\n\nOne More Option Map縺ｧ縺ｯ縲√≠縺ｪ縺溘・莉穂ｺ九・蜿主・繝ｻ螳ｶ譌上・繧ｹ繧ｭ繝ｫ繝ｻ荳榊ｮ峨ｒ謨ｴ逅・＠縲∵ｬ｡縺ｫ蠅励ｄ縺吶∋縺埼∈謚櫁い繧・譫壹・PDF縺ｫ縺励※霑斐＠縺ｾ縺吶・"
+                    "退職届は、区切りです。\nでも、本当に必要なのは、その後に何を増やすかです。\n\nOne More Option Mapでは、あなたの仕事・収入・家族・スキル・不安を整理し、次に増やすべき選択肢を1枚のPDFにして返します。"
                   }
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -372,7 +307,7 @@ export function LifeResignationLetterClient() {
                     href="/map"
                     className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
                   >
-                    閾ｪ蛻・ｰら畑縺ｮ驕ｸ謚櫁い繝槭ャ繝励ｒ菴懊ｋ
+                    自分専用の選択肢マップを作る
                     <ArrowUpRight size={17} strokeWidth={1.8} />
                   </Link>
                   <button
@@ -381,7 +316,7 @@ export function LifeResignationLetterClient() {
                     className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-bone transition hover:border-ember/40 hover:bg-white/[0.07]"
                   >
                     <RotateCcw size={16} strokeWidth={1.8} />
-                    Start again
+                    もう一度診断する
                   </button>
                 </div>
               </section>
