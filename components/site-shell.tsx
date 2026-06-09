@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Coffee, DoorOpen, Home, LibraryBig, Moon } from "lucide-react";
+import { Coffee, DoorOpen, FilePenLine, Home, LibraryBig, Moon } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: Moon },
   { href: "/read", label: "Read", icon: LibraryBig },
-  { href: "/quiet-room", label: "Quiet Room", icon: DoorOpen }
+  { href: "/quiet-room", label: "Quiet Room", icon: DoorOpen },
+  { href: "/life-resignation-letter", label: "Letter", icon: FilePenLine }
 ];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
