@@ -1,15 +1,22 @@
-# after work in japan
+# One More Option
 
-A complete dark-theme Next.js and Tailwind CSS website for a personal record:
+A simple dark Next.js and Tailwind CSS landing page for a personal record/community.
 
-> A personal archive about leaving one-option work, becoming an engineer, and protecting family by keeping more choices open.
+> 福岡で暮らす一人の会社員が、自分と家族のためにもう一つの選択肢を作っていく記録。
 
 ## Pages
 
 - Home
-- About
-- Read
-- Quiet Room
+
+## Community URL
+
+The current placeholder is defined in:
+
+```text
+components/content.tsx
+```
+
+Update `COMMUNITY_URL` when the paid community page is ready.
 
 ## Create the GitHub repository
 
@@ -20,7 +27,7 @@ git init
 git add .
 git commit -m "Initial website"
 git branch -M main
-gh repo create after-work-in-japan --public --source=. --remote=origin --push
+gh repo create one-more-option --public --source=. --remote=origin --push
 ```
 
 ## Run locally
