@@ -7,48 +7,72 @@ export default function Home() {
   return (
     <SiteShell>
       <section className="relative overflow-hidden px-5 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_10%,rgba(187,124,64,0.16),transparent_17rem),radial-gradient(circle_at_86%_18%,rgba(60,78,86,0.22),transparent_22rem),linear-gradient(155deg,rgba(6,8,11,0.94)_0%,rgba(13,11,9,0.78)_48%,rgba(5,5,6,0.98)_100%)]" />
-        <div className="absolute inset-0 opacity-[0.075] [background-image:linear-gradient(rgba(255,255,255,0.075)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:42px_42px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_8%,rgba(199,144,82,0.20),transparent_17rem),radial-gradient(circle_at_88%_14%,rgba(87,103,100,0.18),transparent_23rem),linear-gradient(155deg,rgba(12,13,14,0.94)_0%,rgba(20,17,13,0.82)_46%,rgba(7,7,7,0.98)_100%)]" />
+        <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(255,255,255,0.075)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:42px_42px]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent" />
-        <div className="relative mx-auto max-w-3xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ember/90">
-            FUKUOKA / AFTER WORK
-          </p>
-          <h1 className="mt-7 font-serif text-[2.7rem] leading-[1.08] text-bone sm:text-6xl">
-            選択肢が一つしかないまま、
-            <br />
-            家族の未来を決めたくなかった。
-          </h1>
-          <div className="mt-8 space-y-5 text-[15px] leading-8 text-ash sm:text-base">
-            <p>
-              One More Optionは、
-              <br />
-              福岡で暮らす一人の会社員が、
-              <br />
-              仕事・家族・お金・学び・副業を通して、
-              <br />
-              人生の選択肢を少しずつ増やしていく記録です。
+        <div className="relative mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_0.86fr] lg:items-end">
+          <div className="max-w-3xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ember/90">
+              APARTMENT DESK / FUKUOKA NIGHT
             </p>
-            <p>
-              成功者の発信ではありません。
+            <h1 className="mt-7 font-serif text-[2.7rem] leading-[1.08] text-bone sm:text-6xl">
+              選択肢が一つしかないまま、
               <br />
-              迷いながら、作りながら、何度も戻ってくるための場所です。
-            </p>
+              家族の未来を決めたくなかった。
+            </h1>
+            <div className="mt-8 space-y-5 text-[15px] leading-8 text-ash sm:text-base">
+              <p>
+                One More Optionは、
+                <br />
+                福岡で暮らす一人の会社員が、
+                <br />
+                仕事・家族・お金・学び・副業を通して、
+                <br />
+                人生の選択肢を少しずつ増やしていく記録です。
+              </p>
+              <p>
+                成功者の発信ではありません。
+                <br />
+                子どもが寝たあと、ノートPCとメモを開いて、
+                <br />
+                何度も戻ってくるための場所です。
+              </p>
+            </div>
+            <div className="mt-9 grid gap-3 sm:flex">
+              <Link
+                href={COMMUNITY_URL}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
+              >
+                有料コミュニティを見る
+                <ArrowUpRight size={16} strokeWidth={1.8} />
+              </Link>
+              <Link
+                href="#memo"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.035] px-6 text-sm font-semibold text-bone transition hover:border-ember/50 hover:bg-white/[0.06]"
+              >
+                最近のメモを読む
+              </Link>
+            </div>
           </div>
-          <div className="mt-9 grid gap-3 sm:flex">
-            <Link
-              href={COMMUNITY_URL}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bone px-6 text-sm font-semibold text-ink transition hover:bg-ember"
-            >
-              有料コミュニティを見る
-              <ArrowUpRight size={16} strokeWidth={1.8} />
-            </Link>
-            <Link
-              href="#memo"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.035] px-6 text-sm font-semibold text-bone transition hover:border-ember/50 hover:bg-white/[0.06]"
-            >
-              最近のメモを読む
-            </Link>
+
+          <div className="desk-scene" aria-hidden="true">
+            <div className="desk-lamp" />
+            <div className="desk-laptop">
+              <div className="desk-screen">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="desk-keyboard" />
+            </div>
+            <div className="desk-note">
+              <p>One More Option</p>
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="desk-pen" />
+            <div className="desk-label">AFTER KIDS SLEEP</div>
           </div>
         </div>
       </section>
